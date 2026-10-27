@@ -3,8 +3,8 @@ package font
 import (
 	"strings"
 
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // name values corresponding to the xxxConsts arrays

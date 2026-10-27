@@ -3,8 +3,8 @@ package fontscan
 import (
 	"hash/maphash"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 // runeLRUEntry holds a single key-value pair for an LRU cache.

@@ -2,7 +2,7 @@
 
 package tables
 
-import "github.com/OpenMellon/openpdf/typesetting/font/opentype"
+import "github.com/OpenMellon/typesetting/font/opentype"
 
 //go:generate ../../../../typesetting-utils/generators/binarygen/cmd/generator . _src.go
 

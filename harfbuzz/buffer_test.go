@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"testing"
 
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/language"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 // ported from harfbuzz/test/api/test-buffer.c Copyright © 2011  Google, Inc. Behdad Esfahbod

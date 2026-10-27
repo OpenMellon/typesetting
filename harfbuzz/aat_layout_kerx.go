@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 func (c *aatApplyContext) applyKernx(kerx font.Kernx, accelerators []kernxSubtableAccelerator) {

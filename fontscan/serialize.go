@@ -11,7 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
+	"github.com/OpenMellon/typesetting/font"
 )
 
 // defines the routines to serialize a font set to

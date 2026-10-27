@@ -3,8 +3,8 @@
 package shaping
 
 import (
-	"github.com/OpenMellon/openpdf/typesetting/di"
-	"github.com/OpenMellon/openpdf/typesetting/font"
+	"github.com/OpenMellon/typesetting/di"
+	"github.com/OpenMellon/typesetting/font"
 	"golang.org/x/image/math/fixed"
 )
 

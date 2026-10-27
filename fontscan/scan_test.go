@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 func TestDefaultDirs(t *testing.T) {

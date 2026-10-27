@@ -4,8 +4,8 @@ import (
 	"math"
 	"sort"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 // Query exposes the intention of an author about the

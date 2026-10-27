@@ -6,7 +6,7 @@ import (
 	"sort"
 	"unicode"
 
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 // GeneralCategory is an enum storing the Unicode General Category of a rune.

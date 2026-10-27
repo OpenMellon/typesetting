@@ -10,9 +10,9 @@ import (
 	"testing"
 
 	td "github.com/go-text/typesetting-utils/harfbuzz"
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/language"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 // collectTests walk through the tests directories, parsing .tests files

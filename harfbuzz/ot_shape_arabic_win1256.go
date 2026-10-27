@@ -1,9 +1,9 @@
 package harfbuzz
 
 import (
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-arabic-win1256.hh Copyright © 2014  Google, Inc. Behdad Esfahbod

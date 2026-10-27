@@ -1,6 +1,6 @@
 package fontscan
 
-import "github.com/OpenMellon/openpdf/typesetting/font"
+import "github.com/OpenMellon/typesetting/font"
 
 // extracted from a linux system
 var linuxSampleFontSet = fontSet{

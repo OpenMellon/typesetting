@@ -10,11 +10,11 @@ import (
 
 	hd "github.com/go-text/typesetting-utils/harfbuzz"
 	td "github.com/go-text/typesetting-utils/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/di"
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/di"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/language"
+	tu "github.com/OpenMellon/typesetting/testutils"
 	"golang.org/x/image/font/gofont/gomono"
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/math/fixed"
@@ -531,7 +531,7 @@ func TestShapeVertical(t *testing.T) {
 }
 
 func TestCFF2(t *testing.T) {
-	// regression test for https://github.com/OpenMellon/openpdf/typesetting/issues/118
+	// regression test for https://github.com/OpenMellon/typesetting/issues/118
 	b, err := td.Files.ReadFile("common/NotoSansCJKjp-VF.otf")
 	tu.AssertNoErr(t, err)
 

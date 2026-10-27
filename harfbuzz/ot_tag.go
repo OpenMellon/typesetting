@@ -4,9 +4,9 @@ import (
 	"encoding/hex"
 	"strings"
 
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 // ported from harfbuzz/src/hb-ot-tag.cc Copyright © 2009  Red Hat, Inc. 2011  Google, Inc. Behdad Esfahbod, Roozbeh Pournader

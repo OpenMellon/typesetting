@@ -7,10 +7,10 @@ import (
 
 	td "github.com/go-text/typesetting-utils/harfbuzz"
 	otTD "github.com/go-text/typesetting-utils/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/language"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 func assertEqualInt(t *testing.T, expected, got int) {

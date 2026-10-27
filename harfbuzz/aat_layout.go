@@ -3,9 +3,9 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // ported from harfbuzz/src/hb-aat-layout.h  Copyright © 2018 Ebrahim Byagowi, Behdad Esfahbod

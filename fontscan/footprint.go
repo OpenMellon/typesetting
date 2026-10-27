@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // Location identifies where a font.Face is stored.

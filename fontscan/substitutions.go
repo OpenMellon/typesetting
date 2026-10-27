@@ -3,7 +3,7 @@ package fontscan
 import (
 	"strings"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
+	"github.com/OpenMellon/typesetting/font"
 )
 
 // this file implements the family substitution feature,

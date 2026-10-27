@@ -4,8 +4,8 @@ import (
 	"math"
 	"sort"
 
-	"github.com/OpenMellon/openpdf/typesetting/di"
-	"github.com/OpenMellon/openpdf/typesetting/segmenter"
+	"github.com/OpenMellon/typesetting/di"
+	"github.com/OpenMellon/typesetting/segmenter"
 	"golang.org/x/image/math/fixed"
 )
 

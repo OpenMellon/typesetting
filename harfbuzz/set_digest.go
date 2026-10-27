@@ -1,7 +1,7 @@
 package harfbuzz
 
 import (
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // ported from src/hb-set-digest.hh Copyright © 2012  Google, Inc. Behdad Esfahbod

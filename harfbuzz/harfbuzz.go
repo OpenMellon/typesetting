@@ -15,10 +15,10 @@ import (
 	"math/bits"
 	"strconv"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 // based on upstream commit 5a31dd02f0b32de12336f72db9297bfe94cf0da1 (v12.3.0)

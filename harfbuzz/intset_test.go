@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 // newIntSet builds a set containing the given runes.

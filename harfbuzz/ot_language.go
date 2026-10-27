@@ -3,7 +3,7 @@ package harfbuzz
 import (
 	"strings"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 type langTag struct {

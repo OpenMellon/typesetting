@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	ucd "github.com/OpenMellon/openpdf/typesetting/internal/unicodedata"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	ucd "github.com/OpenMellon/typesetting/internal/unicodedata"
 )
 
 // Position stores a position, scaled according to the `Font`

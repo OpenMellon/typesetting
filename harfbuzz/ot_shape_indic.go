@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"sort"
 
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	ucd "github.com/OpenMellon/openpdf/typesetting/internal/unicodedata"
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	ucd "github.com/OpenMellon/typesetting/internal/unicodedata"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-indic.cc, .hh Copyright © 2011,2012  Google, Inc.  Behdad Esfahbod

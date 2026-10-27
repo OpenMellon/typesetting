@@ -1,7 +1,7 @@
 package di
 
 import (
-	"github.com/OpenMellon/openpdf/typesetting/harfbuzz"
+	"github.com/OpenMellon/typesetting/harfbuzz"
 )
 
 // Direction indicates the layout direction of a piece of text.

@@ -1,7 +1,7 @@
 package harfbuzz
 
 import (
-	ucd "github.com/OpenMellon/openpdf/typesetting/internal/unicodedata"
+	ucd "github.com/OpenMellon/typesetting/internal/unicodedata"
 )
 
 // generalCategory is an enum value to allow compact storage (see generalCategories)

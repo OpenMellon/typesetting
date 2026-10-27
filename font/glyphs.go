@@ -10,8 +10,8 @@ import (
 	"image/jpeg"
 	"image/png"
 
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 	"golang.org/x/image/tiff"
 )
 

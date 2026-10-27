@@ -6,7 +6,7 @@ import (
 	"sort"
 	"testing"
 
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 func TestLanguage(t *testing.T) {

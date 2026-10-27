@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	td "github.com/go-text/typesetting-utils/opentype"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 func TestWrite(t *testing.T) {

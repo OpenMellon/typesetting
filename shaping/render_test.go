@@ -7,8 +7,8 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/font/opentype"
 )
 
 // this file implements a very primitive "rasterizer", which can

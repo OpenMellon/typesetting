@@ -1,8 +1,8 @@
 package shaping
 
 import (
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/harfbuzz"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/harfbuzz"
 )
 
 // adjust the cache size of the zero value, used by default

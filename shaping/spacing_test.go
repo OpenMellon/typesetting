@@ -3,10 +3,10 @@ package shaping
 import (
 	"testing"
 
-	"github.com/OpenMellon/openpdf/typesetting/di"
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/di"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/language"
+	tu "github.com/OpenMellon/typesetting/testutils"
 	"golang.org/x/image/math/fixed"
 )
 

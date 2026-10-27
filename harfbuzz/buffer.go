@@ -1,8 +1,8 @@
 package harfbuzz
 
 import (
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	"github.com/OpenMellon/openpdf/typesetting/language"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/language"
 )
 
 /* ported from harfbuzz/src/hb-buffer.hh and hb-buffer.h

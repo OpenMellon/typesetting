@@ -5,7 +5,7 @@ package font
 import (
 	"encoding/binary"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // Kernx represents a 'kern' or 'kerx' kerning table.

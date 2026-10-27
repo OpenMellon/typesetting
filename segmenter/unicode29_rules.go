@@ -3,7 +3,7 @@
 package segmenter
 
 import (
-	ucd "github.com/OpenMellon/openpdf/typesetting/internal/unicodedata"
+	ucd "github.com/OpenMellon/typesetting/internal/unicodedata"
 )
 
 // -----------------------------------------------------------------------

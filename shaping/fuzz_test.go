@@ -7,9 +7,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/OpenMellon/openpdf/typesetting/di"
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	"github.com/OpenMellon/openpdf/typesetting/segmenter"
+	"github.com/OpenMellon/typesetting/di"
+	"github.com/OpenMellon/typesetting/language"
+	"github.com/OpenMellon/typesetting/segmenter"
 	"golang.org/x/image/math/fixed"
 )
 

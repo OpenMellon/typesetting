@@ -2,7 +2,7 @@
 
 package font
 
-import "github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+import "github.com/OpenMellon/typesetting/font/opentype/tables"
 
 type Morx []MorxChain
 

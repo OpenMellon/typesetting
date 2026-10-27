@@ -7,7 +7,7 @@ import (
 	"errors"
 	"sort"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // This file implements the logic needed to use a cmap.

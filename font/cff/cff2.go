@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	ps "github.com/OpenMellon/openpdf/typesetting/font/cff/interpreter"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	ps "github.com/OpenMellon/typesetting/font/cff/interpreter"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 //go:generate ../../../../typesetting-utils/generators/binarygen/cmd/generator . _src.go

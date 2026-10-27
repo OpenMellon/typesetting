@@ -6,9 +6,9 @@ import (
 	"errors"
 	"fmt"
 
-	ps "github.com/OpenMellon/openpdf/typesetting/font/cff/interpreter"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	ps "github.com/OpenMellon/typesetting/font/cff/interpreter"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // LoadGlyph parses the glyph charstring to compute segments and path bounds.

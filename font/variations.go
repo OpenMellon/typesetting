@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 // axis records

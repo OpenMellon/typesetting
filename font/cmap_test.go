@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"testing"
 
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	tu "github.com/OpenMellon/typesetting/testutils"
 
 	td "github.com/go-text/typesetting-utils/opentype"
 )

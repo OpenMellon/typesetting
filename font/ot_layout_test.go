@@ -7,8 +7,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	tu "github.com/OpenMellon/typesetting/testutils"
 )
 
 func TestGetProps(t *testing.T) {

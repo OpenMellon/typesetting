@@ -3,10 +3,10 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	ot "github.com/OpenMellon/openpdf/typesetting/font/opentype"
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
-	ucd "github.com/OpenMellon/openpdf/typesetting/internal/unicodedata"
+	"github.com/OpenMellon/typesetting/font"
+	ot "github.com/OpenMellon/typesetting/font/opentype"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
+	ucd "github.com/OpenMellon/typesetting/internal/unicodedata"
 )
 
 // Support functions for OpenType shaping related queries.

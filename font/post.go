@@ -5,7 +5,7 @@ package font
 import (
 	"errors"
 
-	"github.com/OpenMellon/openpdf/typesetting/font/opentype/tables"
+	"github.com/OpenMellon/typesetting/font/opentype/tables"
 )
 
 const numBuiltInPostNames = len(builtInPostNames)

@@ -10,11 +10,11 @@ import (
 	"testing"
 	"testing/quick"
 
-	"github.com/OpenMellon/openpdf/typesetting/di"
-	"github.com/OpenMellon/openpdf/typesetting/font"
-	"github.com/OpenMellon/openpdf/typesetting/language"
-	"github.com/OpenMellon/openpdf/typesetting/segmenter"
-	tu "github.com/OpenMellon/openpdf/typesetting/testutils"
+	"github.com/OpenMellon/typesetting/di"
+	"github.com/OpenMellon/typesetting/font"
+	"github.com/OpenMellon/typesetting/language"
+	"github.com/OpenMellon/typesetting/segmenter"
+	tu "github.com/OpenMellon/typesetting/testutils"
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/math/fixed"
 )
