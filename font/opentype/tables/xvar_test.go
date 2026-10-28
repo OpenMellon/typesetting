@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/opentype"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/opentype"
 )
 
 func deHexStr(s string) []byte {
@@ -39,7 +39,8 @@ func TestParseTuple(t *testing.T) {
 	// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6gvar.html
 	skiaGvarSharedTuplesData := deHexStr(
 		"40 00 00 00 C0 00 00 00 00 00 40 00 00 00 C0 00 " +
-			"C0 00 C0 00 40 00 C0 00 40 00 40 00 C0 00 40 00")
+			"C0 00 C0 00 40 00 C0 00 40 00 40 00 C0 00 40 00",
+	)
 
 	skiaGvarSharedTuples := SharedTuples{[]Tuple{
 		{Values: []Coord{NewCoord(1), NewCoord(0)}},

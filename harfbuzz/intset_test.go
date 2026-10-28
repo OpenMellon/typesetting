@@ -2,7 +2,7 @@ package harfbuzz
 
 import (
 	"reflect"
-	"sort"
+	"slices"
 	"testing"
 
 	tu "github.com/OpenMellon/typesetting/testutils"
@@ -63,7 +63,7 @@ func TestRuneSet(t *testing.T) {
 		}
 
 		cov.delete(tt.r)
-		sort.Slice(tt.start, func(i, j int) bool { return tt.start[i] < tt.start[j] })
+		slices.Sort(tt.start)
 		if runes := cov.ints(); !reflect.DeepEqual(runes, tt.start) {
 			t.Fatalf("expected %v, got %v (%v)", tt.start, runes, cov)
 		}

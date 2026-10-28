@@ -9,10 +9,10 @@ import (
 	"strings"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/harfbuzz"
 	"github.com/OpenMellon/typesetting/font"
 	"github.com/OpenMellon/typesetting/language"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/harfbuzz"
 )
 
 // collectTests walk through the tests directories, parsing .tests files
@@ -68,7 +68,7 @@ func readTestFile(t testing.TB, filename string) (out []testData) {
 	// We can't use filepath.Dir here because embed.FS always uses unix-style paths, even on windows.
 	dir := path.Dir(filename) // xxx/tests/file.tests
 
-	for _, line := range strings.Split(string(f), "\n") {
+	for line := range strings.SplitSeq(string(f), "\n") {
 		if strings.HasPrefix(line, "#") || strings.HasPrefix(line, "@") || strings.TrimSpace(line) == "" { // skip comments or directive
 			continue
 		}

@@ -1,0 +1,435 @@
+package unicodedata
+
+import (
+	"testing"
+
+	tu "github.com/OpenMellon/typesetting/testutils"
+)
+
+// See https://www.unicode.org/reports/tr14/#DescriptionOfProperties
+var lineBreakTests = []struct {
+	args rune
+	want LineBreak
+}{
+	{-1, 0},
+
+	// AI: Ambiguous (Alphabetic or Ideograph)
+	{'\u24EA', LB_AI},
+	{'\u2780', LB_AI},
+	// AL: Ordinary Alphabetic and Symbol Characters (XP)
+	{'\u0600', LB_NU},     //   ARABIC NUMBER SIGN
+	{'\u06DD', LB_NU},     //  	ARABIC END OF AYAH
+	{'\u070F', LB_AL},     //  	SYRIAC ABBREVIATION MARK
+	{'\u2061', LB_AL},     //   	FUNCTION APPLICATION
+	{'\U000110BD', LB_NU}, //  	KAITHI NUMBER SIGN
+	// BA: LB_ After (A)
+	{'\u1680', LB_BA},     // OGHAM SPACE MARK
+	{'\u2000', LB_BA},     // EN QUAD
+	{'\u2001', LB_BA},     // EM QUAD
+	{'\u2002', LB_BA},     // EN SPACE
+	{'\u2003', LB_BA},     // EM SPACE
+	{'\u2004', LB_BA},     // THREE-PER-EM SPACE
+	{'\u2005', LB_BA},     // FOUR-PER-EM SPACE
+	{'\u2006', LB_BA},     // SIX-PER-EM SPACE
+	{'\u2008', LB_BA},     // PUNCTUATION SPACE
+	{'\u2009', LB_BA},     // THIN SPACE
+	{'\u200A', LB_BA},     // HAIR SPACE
+	{'\u205F', LB_BA},     // MEDIUM MATHEMATICAL SPACE
+	{'\u3000', LB_BA},     // IDEOGRAPHIC SPACE
+	{'\u0009', LB_BA},     //	TAB
+	{'\u00AD', LB_BA},     //	SOFT HYPHEN (SHY)
+	{'\u058A', LB_HH},     //	ARMENIAN HYPHEN
+	{'\u2010', LB_HH},     //	HYPHEN
+	{'\u2012', LB_HH},     //	FIGURE DASH
+	{'\u2013', LB_HH},     //	EN DASH
+	{'\u05BE', LB_HH},     //	HEBREW PUNCTUATION MAQAF
+	{'\u0F0B', LB_BA},     //	TIBETAN MARK INTERSYLLABIC TSHEG
+	{'\u1361', LB_BA},     //	ETHIOPIC WORDSPACE
+	{'\u17D8', LB_BA},     //	KHMER SIGN BEYYAL
+	{'\u17DA', LB_BA},     //	KHMER SIGN KOOMUUT
+	{'\u2027', LB_BA},     //	HYPHENATION POINT
+	{'\u007C', LB_BA},     //	VERTICAL LINE
+	{'\u16EB', LB_BA},     //	RUNIC SINGLE PUNCTUATION
+	{'\u16EC', LB_BA},     //	RUNIC MULTIPLE PUNCTUATION
+	{'\u16ED', LB_BA},     //	RUNIC CROSS PUNCTUATION
+	{'\u2056', LB_BA},     //	THREE DOT PUNCTUATION
+	{'\u2058', LB_BA},     //	FOUR DOT PUNCTUATION
+	{'\u2059', LB_BA},     //	FIVE DOT PUNCTUATION
+	{'\u205A', LB_BA},     //	TWO DOT PUNCTUATION
+	{'\u205B', LB_BA},     //	FOUR DOT MARK
+	{'\u205D', LB_BA},     //	TRICOLON
+	{'\u205E', LB_BA},     //	VERTICAL FOUR DOTS
+	{'\u2E19', LB_BA},     //	PALM BRANCH
+	{'\u2E2A', LB_BA},     //	TWO DOTS OVER ONE DOT PUNCTUATION
+	{'\u2E2B', LB_BA},     //	ONE DOT OVER TWO DOTS PUNCTUATION
+	{'\u2E2C', LB_BA},     //	SQUARED FOUR DOT PUNCTUATION
+	{'\u2E2D', LB_BA},     //	FIVE DOT MARK
+	{'\u2E30', LB_BA},     //	RING POINT
+	{'\U00010100', LB_BA}, //	AEGEAN WORD SEPARATOR LINE
+	{'\U00010101', LB_BA}, //	AEGEAN WORD SEPARATOR DOT
+	{'\U00010102', LB_BA}, //	AEGEAN CHECK MARK
+	{'\U0001039F', LB_BA}, //	UGARITIC WORD DIVIDER
+	{'\U000103D0', LB_BA}, //	OLD PERSIAN WORD DIVIDER
+	{'\U0001091F', LB_BA}, //	PHOENICIAN WORD SEPARATOR
+	{'\U00012470', LB_BA}, //	CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER
+	{'\u0964', LB_BA},     //	DEVANAGARI DANDA
+	{'\u0965', LB_BA},     //	DEVANAGARI DOUBLE DANDA
+	{'\u0E5A', LB_BA},     //	THAI CHARACTER ANGKHANKHU
+	{'\u0E5B', LB_BA},     //	THAI CHARACTER KHOMUT
+	{'\u104A', LB_BA},     //	MYANMAR SIGN LITTLE SECTION
+	{'\u104B', LB_BA},     //	MYANMAR SIGN SECTION
+	{'\u1735', LB_BA},     //	PHILIPPINE SINGLE PUNCTUATION
+	{'\u1736', LB_BA},     //	PHILIPPINE DOUBLE PUNCTUATION
+	{'\u17D4', LB_BA},     //	KHMER SIGN KHAN
+	{'\u17D5', LB_BA},     //	KHMER SIGN BARIYOOSAN
+	{'\u1B5E', LB_BA},     //	BALINESE CARIK SIKI
+	{'\u1B5F', LB_BA},     //	BALINESE CARIK PAREREN
+	{'\uA8CE', LB_BA},     //	SAURASHTRA DANDA
+	{'\uA8CF', LB_BA},     //	SAURASHTRA DOUBLE DANDA
+	{'\uAA5D', LB_BA},     //	CHAM PUNCTUATION DANDA
+	{'\uAA5E', LB_BA},     //	CHAM PUNCTUATION DOUBLE DANDA
+	{'\uAA5F', LB_BA},     //	CHAM PUNCTUATION TRIPLE DANDA
+	{'\U00010A56', LB_BA}, //	KHAROSHTHI PUNCTUATION DANDA
+	{'\U00010A57', LB_BA}, //	KHAROSHTHI PUNCTUATION DOUBLE DANDA
+	{'\u0F34', LB_BA},     //	TIBETAN MARK BSDUS RTAGS
+	{'\u0F7F', LB_BA},     //	TIBETAN SIGN RNAM BCAD
+	{'\u0F85', LB_BA},     //	TIBETAN MARK PALUTA
+	{'\u0FBE', LB_BA},     //	TIBETAN KU RU KHA
+	{'\u0FBF', LB_BA},     //	TIBETAN KU RU KHA BZHI MIG CAN
+	{'\u0FD2', LB_BA},     //	TIBETAN MARK NYIS TSHEG
+	{'\u1804', LB_BA},     //	MONGOLIAN COLON
+	{'\u1805', LB_BA},     //	MONGOLIAN FOUR DOTS
+	{'\u1B5A', LB_BA},     //	BALINESE PANTI
+	{'\u1B5B', LB_BA},     //	BALINESE PAMADA
+	{'\u1B5D', LB_BA},     //	BALINESE CARIK PAMUNGKAH
+	{'\u1B60', LB_BA},     //	BALINESE PAMENENG
+	{'\u1C3B', LB_BA},     //	LEPCHA PUNCTUATION TA-ROL
+	{'\u1C3C', LB_BA},     //	LEPCHA PUNCTUATION NYET THYOOM TA-ROL
+	{'\u1C3D', LB_BA},     //	LEPCHA PUNCTUATION CER-WA
+	{'\u1C3E', LB_BA},     //	LEPCHA PUNCTUATION TSHOOK CER-WA
+	{'\u1C3F', LB_BA},     //	LEPCHA PUNCTUATION TSHOOK
+	{'\u1C7E', LB_BA},     //	OL CHIKI PUNCTUATION MUCAAD
+	{'\u1C7F', LB_BA},     //	OL CHIKI PUNCTUATION DOUBLE MUCAAD
+	{'\u2CFA', LB_BA},     //	COPTIC OLD NUBIAN DIRECT QUESTION MARK
+	{'\u2CFB', LB_BA},     //	COPTIC OLD NUBIAN INDIRECT QUESTION MARK
+	{'\u2CFC', LB_BA},     //	COPTIC OLD NUBIAN VERSE DIVIDER
+	{'\u2CFF', LB_BA},     //	COPTIC MORPHOLOGICAL DIVIDER
+	{'\u2E0E', LB_BA},     // EDITORIAL CORONIS
+	{'\u2E17', LB_HH},     //	DOUBLE OBLIQUE HYPHEN
+	{'\uA60D', LB_BA},     //	VAI COMMA
+	{'\uA60F', LB_BA},     //	VAI QUESTION MARK
+	{'\uA92E', LB_BA},     //	KAYAH LI SIGN CWI
+	{'\uA92F', LB_BA},     //	KAYAH LI SIGN SHYA
+	{'\U00010A50', LB_BA}, //	KHAROSHTHI PUNCTUATION DOT
+	{'\U00010A51', LB_BA}, //	KHAROSHTHI PUNCTUATION SMALL CIRCLE
+	{'\U00010A52', LB_BA}, //	KHAROSHTHI PUNCTUATION CIRCLE
+	{'\U00010A53', LB_BA}, //	KHAROSHTHI PUNCTUATION CRESCENT BAR
+	{'\U00010A54', LB_BA}, //	KHAROSHTHI PUNCTUATION MANGALAM
+	{'\U00010A55', LB_BA}, //	KHAROSHTHI PUNCTUATION LOTUS
+	// BB: LB_ Before (B)
+	{'\u00B4', LB_BB}, //	ACUTE ACCENT
+	{'\u1FFD', LB_BB}, //	GREEK OXIA
+	{'\u02DF', LB_BB}, //	MODIFIER LETTER CROSS ACCENT
+	{'\u02C8', LB_BB}, //	MODIFIER LETTER VERTICAL LINE
+	{'\u02CC', LB_BB}, //	MODIFIER LETTER LOW VERTICAL LINE
+	{'\u0F01', LB_BB}, //	TIBETAN MARK GTER YIG MGO TRUNCATED A
+	{'\u0F02', LB_BB}, //	TIBETAN MARK GTER YIG MGO -UM RNAM BCAD MA
+	{'\u0F03', LB_BB}, //	TIBETAN MARK GTER YIG MGO -UM GTER TSHEG MA
+	{'\u0F04', LB_BB}, //	TIBETAN MARK INITIAL YIG MGO MDUN MA
+	{'\u0F06', LB_BB}, //	TIBETAN MARK CARET YIG MGO PHUR SHAD MA
+	{'\u0F07', LB_BB}, //	TIBETAN MARK YIG MGO TSHEG SHAD MA
+	{'\u0F09', LB_BB}, //	TIBETAN MARK BSKUR YIG MGO
+	{'\u0F0A', LB_BB}, //	TIBETAN MARK BKA- SHOG YIG MGO
+	{'\u0FD0', LB_BB}, //	TIBETAN MARK BSKA- SHOG GI MGO RGYAN
+	{'\u0FD1', LB_BB}, //	TIBETAN MARK MNYAM YIG GI MGO RGYAN
+	{'\u0FD3', LB_BB}, //	TIBETAN MARK INITIAL BRDA RNYING YIG MGO MDUN MA
+	{'\uA874', LB_BB}, //	PHAGS-PA SINGLE HEAD MARK
+	{'\uA875', LB_BB}, //	PHAGS-PA DOUBLE HEAD MARK
+	{'\u1806', LB_BB}, //	MONGOLIAN TODO SOFT HYPHEN
+
+	//	B2: LB_ Opportunity Before and After (B/A/XP)
+	{'\u2014', LB_B2}, //	EM DASH
+
+	// BK: Mandatory LB_ (A) (Non-tailorable)
+
+	{'\u000C', LB_BK}, //	FORM FEED (FF)
+	{'\u000B', LB_BK}, //	LINE TABULATION (VT)
+	{'\u2028', LB_BK}, //	LINE SEPARATOR
+	{'\u2029', LB_BK}, //	PARAGRAPH SEPARATOR
+
+	// CB: Contingent LB_ Opportunity (B/A)
+
+	{'\uFFFC', LB_CB}, //	OBJECT REPLACEMENT CHARACTER
+
+	// CJ: Conditional Japanese Starter
+
+	{'\u3041', LB_CJ}, // 	Small hiragana
+	{'\u30A1', LB_CJ}, // 	Small katakana
+	{'\u30FC', LB_CJ}, //	KATAKANA-HIRAGANA PROLONGED SOUND MARK
+	{'\uFF67', LB_CJ}, // 	Halfwidth variants
+
+	// CL: Close Punctuation (XB)
+
+	{'\u3001', LB_CL}, // 	IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
+	{'\uFE11', LB_CL}, //	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA
+	{'\uFE12', LB_CL}, //	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP
+	{'\uFE50', LB_CL}, //	SMALL COMMA
+	{'\uFE52', LB_CL}, //	SMALL FULL STOP
+	{'\uFF0C', LB_CL}, //	FULLWIDTH COMMA
+	{'\uFF0E', LB_CL}, //	FULLWIDTH FULL STOP
+	{'\uFF61', LB_CL}, //	HALFWIDTH IDEOGRAPHIC FULL STOP
+	{'\uFF64', LB_CL}, //	HALFWIDTH IDEOGRAPHIC COMMA
+
+	// CP: Closing Parenthesis (XB)
+
+	{'\u0029', LB_CP}, //	RIGHT PARENTHESIS
+	{'\u005D', LB_CP}, //	RIGHT SQUARE BRACKET
+
+	// CR: Carriage Return (A) (Non-tailorable)
+	{'\u000D', LB_CR}, //	CARRIAGE RETURN (CR)
+
+	// EB: Emoji Base (B/A)
+	{'\U0001F466', LB_EB}, //	BOY
+	{'\U0001F478', LB_EB}, //	PRINCESS
+	{'\U0001F6B4', LB_EB}, //	BICYCLIST
+
+	// EM: Emoji Modifier (A)
+
+	{'\U0001F3FB', LB_EM}, // EMOJI MODIFIER FITZPATRICK TYPE-1-2
+	{'\U0001F3FF', LB_EM}, // EMOJI MODIFIER FITZPATRICK TYPE-6
+
+	// EX: Exclamation/Interrogation (XB)
+
+	{'\u0021', LB_EX}, //	EXCLAMATION MARK
+	{'\u003F', LB_EX}, //	QUESTION MARK
+	{'\u05C6', LB_EX}, //	HEBREW PUNCTUATION NUN HAFUKHA
+	{'\u061B', LB_EX}, //	ARABIC SEMICOLON
+	{'\u061E', LB_EX}, //	ARABIC TRIPLE DOT PUNCTUATION MARK
+	{'\u061F', LB_EX}, //	ARABIC QUESTION MARK
+	{'\u06D4', LB_EX}, //	ARABIC FULL STOP
+	{'\u07F9', LB_EX}, //	NKO EXCLAMATION MARK
+	{'\u0F0D', LB_EX}, //	TIBETAN MARK SHAD
+	{'\uFF01', LB_EX}, //	FULLWIDTH EXCLAMATION MARK
+	{'\uFF1F', LB_EX}, //	FULLWIDTH QUESTION MARK
+
+	// GL: Non-breaking (“Glue”) (XB/XA) (Non-tailorable)
+
+	{'\u00A0', LB_GL}, //	NO-BREAK SPACE (NBSP)
+	{'\u202F', LB_GL}, //	NARROW NO-BREAK SPACE (NNBSP)
+	{'\u180E', LB_GL}, //	MONGOLIAN VOWEL SEPARATOR (MVS)
+	{'\u034F', LB_CM}, //	COMBINING GRAPHEME JOINER
+	{'\u2007', LB_GL}, //	FIGURE SPACE
+	{'\u2011', LB_GL}, //	NON-BREAKING HYPHEN
+	{'\u0F08', LB_GL}, //	TIBETAN MARK SBRUL SHAD
+	{'\u0F0C', LB_GL}, //	TIBETAN MARK DELIMITER TSHEG BSTAR
+	{'\u0F12', LB_GL}, //	TIBETAN MARK RGYA GRAM SHAD
+	{'\u035C', LB_GL}, // COMBINING DOUBLE BREVE BELOW
+	{'\u0362', LB_GL}, //	 COMBINING DOUBLE RIGHTWARDS ARROW BELOW
+
+	// HY: Hyphen (XA)
+	{'\u002D', LB_HY}, //	HYPHEN-MINUS
+
+	// ID: Ideographic (B/A)
+
+	{'\u2E80', LB_ID},     // 	CJK, Kangxi Radicals, Ideographic Description Symbols
+	{'\u30A2', LB_ID},     // 	Katakana (except small characters)
+	{'\u3400', LB_ID},     // 	CJK Unified Ideographs Extension A
+	{'\u4E00', LB_ID},     // 	CJK Unified Ideographs
+	{'\uF900', LB_ID},     // 	CJK Compatibility Ideographs
+	{'\u3400', LB_ID},     // 	CJK Unified Ideographs Extension A
+	{'\u4E00', LB_ID},     // 	CJK Unified Ideographs
+	{'\uF900', LB_ID},     // 	CJK Compatibility Ideographs
+	{'\U00020000', LB_ID}, // 	Plane 2
+	{'\U00030000', LB_ID}, // 	Plane 3
+	{'\U0001F000', LB_ID}, // 	Plane 1 range
+
+	// IN: Inseparable Characters (XP)
+
+	{'\u2024', LB_IN}, //	ONE DOT LEADER
+	{'\u2025', LB_IN}, //	TWO DOT LEADER
+	{'\u2026', LB_IN}, //	HORIZONTAL ELLIPSIS
+	{'\uFE19', LB_IN}, //	PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
+
+	// IS: Infix Numeric Separator (XB)
+
+	{'\u002C', LB_IS}, //	COMMA
+	{'\u002E', LB_IS}, //	FULL STOP
+	{'\u003A', LB_IS}, //	COLON
+	{'\u003B', LB_IS}, //	SEMICOLON
+	{'\u037E', LB_IS}, //	GREEK QUESTION MARK (canonically equivalent to 003B)
+	{'\u0589', LB_IS}, //	ARMENIAN FULL STOP
+	{'\u060C', LB_IS}, //	ARABIC COMMA
+	{'\u060D', LB_IS}, //	ARABIC DATE SEPARATOR
+	{'\u07F8', LB_IS}, //	NKO COMMA
+	{'\u2044', LB_IS}, //	FRACTION SLASH
+	{'\uFE10', LB_CL}, //	PRESENTATION FORM FOR VERTICAL COMMA
+	{'\uFE13', LB_NS}, //	PRESENTATION FORM FOR VERTICAL COLON
+	{'\uFE14', LB_NS}, //	PRESENTATION FORM FOR VERTICAL SEMICOLON
+
+	// LF: Line Feed (A) (Non-tailorable)
+	{'\u000A', LB_LF}, //	LINE FEED (LF)
+
+	// NL: Next Line (A) (Non-tailorable)
+	{'\u0085', LB_NL}, //	NEXT LINE (NEL)
+
+	// NS: Nonstarters (XB)
+
+	{'\u17D6', LB_NS}, //	KHMER SIGN CAMNUC PII KUUH
+	{'\u203C', LB_NS}, //	DOUBLE EXCLAMATION MARK
+	{'\u203D', LB_NS}, //	INTERROBANG
+	{'\u2047', LB_NS}, //	DOUBLE QUESTION MARK
+	{'\u2048', LB_NS}, //	QUESTION EXCLAMATION MARK
+	{'\u2049', LB_NS}, //	EXCLAMATION QUESTION MARK
+	{'\u3005', LB_NS}, //	IDEOGRAPHIC ITERATION MARK
+	{'\u301C', LB_NS}, //	WAVE DASH
+	{'\u303C', LB_NS}, //	MASU MARK
+	{'\u303B', LB_NS}, //	VERTICAL IDEOGRAPHIC ITERATION MARK
+	{'\u309B', LB_NS}, // 	KATAKANA-HIRAGANA VOICED SOUND MARK..HIRAGANA VOICED ITERATION MARK
+	{'\u30A0', LB_NS}, //	KATAKANA-HIRAGANA DOUBLE HYPHEN
+	{'\u30FB', LB_NS}, //	KATAKANA MIDDLE DOT
+	{'\u30FD', LB_NS}, // 	KATAKANA ITERATION MARK..KATAKANA VOICED ITERATION MARK
+	{'\uFE54', LB_NS}, // 	SMALL SEMICOLON..SMALL COLON
+	{'\uFF1A', LB_NS}, // 	FULLWIDTH COLON.. FULLWIDTH SEMICOLON
+	{'\uFF65', LB_NS}, //	HALFWIDTH KATAKANA MIDDLE DOT
+	{'\uFF9E', LB_NS}, // 	HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
+
+	// NU: Numeric (XP)
+
+	{'\u066B', LB_NU}, //	ARABIC DECIMAL SEPARATOR
+	{'\u066C', LB_NU}, //	ARABIC THOUSANDS SEPARATOR
+
+	// OP: Open Punctuation (XA)
+
+	{'\u00A1', LB_OP}, //	INVERTED EXCLAMATION MARK
+	{'\u00BF', LB_OP}, //	INVERTED QUESTION MARK
+	{'\u2E18', LB_OP}, //	INVERTED INTERROBANG
+
+	// PO: Postfix Numeric (XB)
+
+	{'\u0025', LB_PO}, //	PERCENT SIGN
+	{'\u00A2', LB_PO}, //	CENT SIGN
+	{'\u00B0', LB_PO}, //	DEGREE SIGN
+	{'\u060B', LB_PO}, //	AFGHANI SIGN
+	{'\u066A', LB_PO}, //	ARABIC PERCENT SIGN
+	{'\u2030', LB_PO}, //	PER MILLE SIGN
+	{'\u2031', LB_PO}, //	PER TEN THOUSAND SIGN
+	{'\u2032', LB_PO}, // 	PRIME
+	{'\u20A7', LB_PO}, //	PESETA SIGN
+	{'\u2103', LB_PO}, //	DEGREE CELSIUS
+	{'\u2109', LB_PO}, //	DEGREE FAHRENHEIT
+	{'\uFDFC', LB_PO}, //	RIAL SIGN
+	{'\uFE6A', LB_PO}, //	SMALL PERCENT SIGN
+	{'\uFF05', LB_PO}, //	FULLWIDTH PERCENT SIGN
+	{'\uFFE0', LB_PO}, //	FULLWIDTH CENT SIGN
+
+	// PR: Prefix Numeric (XA)
+
+	{'\u002B', LB_PR}, //	PLUS SIGN
+	{'\u005C', LB_PR}, //	REVERSE SOLIDUS
+	{'\u00B1', LB_PR}, //	PLUS-MINUS SIGN
+	{'\u2116', LB_PR}, //	NUMERO SIGN
+	{'\u2212', LB_PR}, //	MINUS SIGN
+	{'\u2213', LB_PR}, //	MINUS-OR-PLUS SIGN
+
+	// QU: Quotation (XB/XA)
+
+	{'\u0022', LB_QU}, //	QUOTATION MARK
+	{'\u0027', LB_QU}, //	APOSTROPHE
+	{'\u275B', LB_QU}, //	HEAVY SINGLE TURNED COMMA QUOTATION MARK ORNAMENT
+	{'\u275C', LB_QU}, //	HEAVY SINGLE COMMA QUOTATION MARK ORNAMENT
+	{'\u275D', LB_QU}, //	HEAVY DOUBLE TURNED COMMA QUOTATION MARK ORNAMENT
+	{'\u275E', LB_QU}, //	HEAVY DOUBLE COMMA QUOTATION MARK ORNAMENT
+	{'\u2E00', LB_QU}, //	RIGHT ANGLE SUBSTITUTION MARKER
+	{'\u2E06', LB_QU}, //	RAISED INTERPOLATION MARKER
+	{'\u2E0B', LB_QU}, //	RAISED SQUARE
+	// RI: Regional Indicator (B/A/XP)
+
+	{'\U0001F1E6', LB_RI}, // REGIONAL INDICATOR SYMBOL LETTER A
+	{'\U0001F1FF', LB_RI}, // REGIONAL INDICATOR SYMBOL LETTER Z
+
+	// SA: Complex-Context Dependent (South East Asian) (P)
+
+	{'\u1000', LB_SA},     //	Myanmar
+	{'\u1780', LB_SA},     //	Khmer
+	{'\u1950', LB_SA},     //	Tai Le
+	{'\u1980', LB_SA},     //	New Tai Lue
+	{'\u1A20', LB_SA},     //	Tai Tham
+	{'\uA9E0', LB_SA},     //	Myanmar Extended-B
+	{'\uAA60', LB_SA},     //	Myanmar Extended-A
+	{'\uAA80', LB_SA},     //	Tai Viet
+	{'\U00011700', LB_SA}, // 	Ahom
+
+	// SP: Space (A) (Non-tailorable)
+
+	{'\u0020', LB_SP}, //	SPACE (SP)
+
+	// SY: Symbols Allowing LB_ After (A)
+
+	{'\u002F', LB_SY}, //	SOLIDUS
+
+	// WJ: Word Joiner (XB/XA) (Non-tailorable)
+
+	{'\u2060', LB_WJ}, //	WORD JOINER (WJ)
+	{'\uFEFF', LB_WJ}, //	ZERO WIDTH NO-BREAK SPACE (ZWNBSP)
+
+	// ZW: Zero Width Space (A) (Non-tailorable)
+	{'\u200B', LB_ZW}, //	ZERO WIDTH SPACE (ZWSP)
+
+	// ZWJ: Zero Width Joiner (XA/XB) (Non-tailorable)
+	{'\u200D', LB_ZWJ}, //	ZERO WIDTH JOINER (ZWJ)
+}
+
+func TestLookupLineBreak(t *testing.T) {
+	for _, tt := range lineBreakTests {
+		tu.Assert(t, LookupLineBreak(tt.args) == tt.want)
+	}
+}
+
+// See https://www.unicode.org/reports/tr29/#Grapheme_Cluster_Break_Property_Values
+var graphemeBreakTests = []struct {
+	args rune
+	want GraphemeBreak
+}{
+	{-1, 0},
+	{'a', 0},
+	// CR
+	{'\u000D', GB_CR}, // CARRIAGE RETURN (CR)
+	// Control
+	{0xe01f0, GB_Control},
+	// Extend
+	{'\u200C', GB_Extend}, // ZERO WIDTH NON-JOINER
+	// LF
+	{'\u000A', GB_LF}, // LINE FEED (LF)
+	// ZWJ
+	{'\u200D', GB_ZWJ}, // ZERO WIDTH JOINER
+	// RI
+	{'\U0001F1E6', GB_Regional_Indicator}, // REGIONAL INDICATOR SYMBOL LETTER A
+	// SpacingMark
+	{'\u0E33', GB_SpacingMark}, // ( ำ ) THAI CHARACTER SARA AM
+	{'\u0EB3', GB_SpacingMark}, // ( ຳ ) LAO VOWEL SIGN AM
+
+	// L
+	{'\u1100', GB_L}, // ( ᄀ ) HANGUL CHOSEONG KIYEOK
+	{'\u115F', GB_L}, // ( ᅟ ) HANGUL CHOSEONG FILLER
+	{'\uA960', GB_L}, // ( ꥠ ) HANGUL CHOSEONG TIKEUT-MIEUM
+	{'\uA97C', GB_L}, // ( ꥼ ) HANGUL CHOSEONG SSANGYEORINHIEUH
+	// V
+	{'\u1160', GB_V}, // ( ᅠ ) HANGUL JUNGSEONG FILLER
+	{'\u11A2', GB_V}, // ( ᆢ ) HANGUL JUNGSEONG SSANGARAEA
+	{'\uD7B0', GB_V}, // ( ힰ ) HANGUL JUNGSEONG O-YEO
+	{'\uD7C6', GB_V}, // ( ퟆ ) HANGUL JUNGSEONG ARAEA-E
+	// T
+	{'\u11A8', GB_T}, // ( ᆨ ) HANGUL JONGSEONG KIYEOK
+	{'\u11F9', GB_T}, // ( ᇹ ) HANGUL JONGSEONG YEORINHIEUH
+	{'\uD7CB', GB_T}, // ( ퟋ ) HANGUL JONGSEONG NIEUN-RIEUL
+	{'\uD7FB', GB_T}, // ( ퟻ ) HANGUL JONGSEONG PHIEUPH-THIEUTH
+	// LV
+	{'\uAC00', GB_LV}, // ( 가 ) HANGUL SYLLABLE GA
+	{'\uAC1C', GB_LV}, // ( 개 ) HANGUL SYLLABLE GAE
+	{'\uAC38', GB_LV}, // ( 갸 ) HANGUL SYLLABLE GYA
+	// LVT
+	{'\uAC01', GB_LVT}, // ( 각 ) HANGUL SYLLABLE GAG
+	{'\uAC02', GB_LVT}, // ( 갂 ) HANGUL SYLLABLE GAGG
+	{'\uAC03', GB_LVT}, // ( 갃 ) HANGUL SYLLABLE GAGS
+	{'\uAC04', GB_LVT}, // ( 간 ) HANGUL SYLLABLE GAN
+}

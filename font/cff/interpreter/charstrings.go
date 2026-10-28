@@ -291,7 +291,7 @@ func (out *CharstringReader) Hhcurveto(state *Machine) {
 		pt1 = out.CurrentPoint
 	)
 	if (state.ArgStack.Top & 1) != 0 {
-		pt1.Y += (state.ArgStack.Vals[i])
+		pt1.Y += state.ArgStack.Vals[i]
 		i++
 	}
 	for ; i+4 <= state.ArgStack.Top; i += 4 {
@@ -319,42 +319,42 @@ func (out *CharstringReader) Vhcurveto(state *Machine) {
 		for ; i+8 <= state.ArgStack.Top; i += 8 {
 			out.curve(pt1, pt2, pt3)
 			pt1 = out.CurrentPoint
-			pt1.X += (state.ArgStack.Vals[i])
+			pt1.X += state.ArgStack.Vals[i]
 			pt2 = pt1
 			pt2.Move(state.ArgStack.Vals[i+1], state.ArgStack.Vals[i+2])
 			pt3 = pt2
-			pt3.Y += (state.ArgStack.Vals[i+3])
+			pt3.Y += state.ArgStack.Vals[i+3]
 			out.curve(pt1, pt2, pt3)
 
 			pt1 = pt3
-			pt1.Y += (state.ArgStack.Vals[i+4])
+			pt1.Y += state.ArgStack.Vals[i+4]
 			pt2 = pt1
 			pt2.Move(state.ArgStack.Vals[i+5], state.ArgStack.Vals[i+6])
 			pt3 = pt2
-			pt3.X += (state.ArgStack.Vals[i+7])
+			pt3.X += state.ArgStack.Vals[i+7]
 		}
 		if i < state.ArgStack.Top {
-			pt3.Y += (state.ArgStack.Vals[i])
+			pt3.Y += state.ArgStack.Vals[i]
 		}
 		out.curve(pt1, pt2, pt3)
 	} else {
 		for ; i+8 <= state.ArgStack.Top; i += 8 {
 			pt1 := out.CurrentPoint
-			pt1.Y += (state.ArgStack.Vals[i])
+			pt1.Y += state.ArgStack.Vals[i]
 			pt2 := pt1
 			pt2.Move(state.ArgStack.Vals[i+1], state.ArgStack.Vals[i+2])
 			pt3 := pt2
-			pt3.X += (state.ArgStack.Vals[i+3])
+			pt3.X += state.ArgStack.Vals[i+3]
 			out.curve(pt1, pt2, pt3)
 
 			pt1 = pt3
-			pt1.X += (state.ArgStack.Vals[i+4])
+			pt1.X += state.ArgStack.Vals[i+4]
 			pt2 = pt1
 			pt2.Move(state.ArgStack.Vals[i+5], state.ArgStack.Vals[i+6])
 			pt3 = pt2
-			pt3.Y += (state.ArgStack.Vals[i+7])
+			pt3.Y += state.ArgStack.Vals[i+7]
 			if (state.ArgStack.Top-i < 16) && ((state.ArgStack.Top & 1) != 0) {
-				pt3.X += (state.ArgStack.Vals[i+8])
+				pt3.X += state.ArgStack.Vals[i+8]
 			}
 			out.curve(pt1, pt2, pt3)
 		}
@@ -365,21 +365,21 @@ func (out *CharstringReader) Hvcurveto(state *Machine) {
 	var i int32
 	if (state.ArgStack.Top % 8) >= 4 {
 		pt1 := out.CurrentPoint
-		pt1.X += (state.ArgStack.Vals[i])
+		pt1.X += state.ArgStack.Vals[i]
 		pt2 := pt1
 		pt2.Move(state.ArgStack.Vals[i+1], state.ArgStack.Vals[i+2])
 		pt3 := pt2
-		pt3.Y += (state.ArgStack.Vals[i+3])
+		pt3.Y += state.ArgStack.Vals[i+3]
 		i += 4
 
 		for ; i+8 <= state.ArgStack.Top; i += 8 {
 			out.curve(pt1, pt2, pt3)
 			pt1 = out.CurrentPoint
-			pt1.Y += (state.ArgStack.Vals[i])
+			pt1.Y += state.ArgStack.Vals[i]
 			pt2 = pt1
 			pt2.Move(state.ArgStack.Vals[i+1], state.ArgStack.Vals[i+2])
 			pt3 = pt2
-			pt3.X += (state.ArgStack.Vals[i+3])
+			pt3.X += state.ArgStack.Vals[i+3]
 			out.curve(pt1, pt2, pt3)
 
 			pt1 = pt3
@@ -390,25 +390,25 @@ func (out *CharstringReader) Hvcurveto(state *Machine) {
 			pt3.Y += state.ArgStack.Vals[i+7]
 		}
 		if i < state.ArgStack.Top {
-			pt3.X += (state.ArgStack.Vals[i])
+			pt3.X += state.ArgStack.Vals[i]
 		}
 		out.curve(pt1, pt2, pt3)
 	} else {
 		for ; i+8 <= state.ArgStack.Top; i += 8 {
 			pt1 := out.CurrentPoint
-			pt1.X += (state.ArgStack.Vals[i])
+			pt1.X += state.ArgStack.Vals[i]
 			pt2 := pt1
 			pt2.Move(state.ArgStack.Vals[i+1], state.ArgStack.Vals[i+2])
 			pt3 := pt2
-			pt3.Y += (state.ArgStack.Vals[i+3])
+			pt3.Y += state.ArgStack.Vals[i+3]
 			out.curve(pt1, pt2, pt3)
 
 			pt1 = pt3
-			pt1.Y += (state.ArgStack.Vals[i+4])
+			pt1.Y += state.ArgStack.Vals[i+4]
 			pt2 = pt1
 			pt2.Move(state.ArgStack.Vals[i+5], state.ArgStack.Vals[i+6])
 			pt3 = pt2
-			pt3.X += (state.ArgStack.Vals[i+7])
+			pt3.X += state.ArgStack.Vals[i+7]
 			if (state.ArgStack.Top-i < 16) && ((state.ArgStack.Top & 1) != 0) {
 				pt3.Y += state.ArgStack.Vals[i+8]
 			}

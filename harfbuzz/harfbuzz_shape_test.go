@@ -8,10 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/harfbuzz"
 	"github.com/OpenMellon/typesetting/font"
 	ot "github.com/OpenMellon/typesetting/font/opentype"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/harfbuzz"
 )
 
 // This is the main test suite for harfbuzz, which parses and runs
@@ -23,7 +23,8 @@ func TestShapeExpected(t *testing.T) {
 	tests := collectTests(t)
 
 	// add tests based on the C++ binary
-	tests = append(tests,
+	tests = append(
+		tests,
 		// check we properly scale the offset values
 		newTestData(t, "", "perf_reference/fonts/Roboto-Regular.ttf;--direction=ttb --font-size=2000;U+0061,U+0062;[gid70=0@-544,-1700+0,-2343|gid71=1@-561,-1912+0,-2343]"),
 		newTestData(t, "", "perf_reference/fonts/Roboto-Regular.ttf;--direction=ttb --font-size=3000;U+0061,U+0062;[gid70=0@-816,-2550+0,-3515|gid71=1@-842,-2868+0,-3515]"),
@@ -157,7 +158,7 @@ func (fo *fontOpts) loadFont(t *testing.T) *Font {
 
 // returnns x * 2^exp
 func scalbnf(x float64, exp int) int32 {
-	return int32(x * (math.Pow(2, float64(exp))))
+	return int32(x * math.Pow(2, float64(exp)))
 }
 
 func (so *shapeOpts) setupBuffer(buffer *Buffer) {

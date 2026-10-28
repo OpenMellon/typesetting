@@ -7,7 +7,7 @@ This library provides typesetting capabilities in pure Go. It is appropriate for
 This project, although already used in production by UI toolkits, still evolves rapidly. As such, the library uses unstable versions v0.x.y : the required breaking changes will bump the minor version number (x); the bug fixes and performance improvements the patch number (y).
 
 ## Review guidelines
- 
+
 Go-text is a collaboration between many individuals and projects, it is important to us that
 designs and decisions are right for the broadest possible audience.
 As a result the project will always have 3 maintainers that represent different projects

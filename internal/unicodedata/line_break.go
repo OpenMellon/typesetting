@@ -495,7 +495,7 @@ var lbUint8 = [6486]uint8{
 
 func lbLookup(u rune) uint8 {
 	if 0 <= u && u < 918000 {
-		return lbUint8[6090+int(int((int(lbUint8[1090+int(int((int(lbUint16[int((int(lbUint8[226+int(int((int(lbUint8[int((((u>>1)>>3)>>3)>>5)]))<<5)+int((((u>>1)>>3)>>3)&31))]))<<3)+int(((u>>1)>>3)&7)]))<<3)+int((u>>1)&7))]))<<1)+int(u&1))]
+		return lbUint8[6090+int(int(int(lbUint8[1090+int(int(int(lbUint16[int(int(lbUint8[226+int(int(int(lbUint8[int((((u>>1)>>3)>>3)>>5)])<<5)+int((((u>>1)>>3)>>3)&31))])<<3)+int(((u>>1)>>3)&7)])<<3)+int((u>>1)&7))])<<1)+int(u&1))]
 	} else {
 		return 0
 	}

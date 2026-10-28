@@ -266,7 +266,8 @@ func (mb *otMapBuilder) compile(m *otMap, key otShapePlanKey) {
 
 			for _, feat := range m.features {
 				if feat.stage[tableIndex] == stage {
-					m.addLookups(table, tableIndex,
+					m.addLookups(
+						table, tableIndex,
 						feat.index[tableIndex],
 						key[tableIndex],
 						feat.mask,

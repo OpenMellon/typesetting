@@ -843,8 +843,10 @@ var arabicJoinings = map[rune]arabicJoining{ // 834 entries
 	0x1e94b: 'T',
 }
 
-const firstArabicShape = 0x0621
-const lastArabicShape = 0x06d3
+const (
+	firstArabicShape = 0x0621
+	lastArabicShape  = 0x06d3
+)
 
 // arabicShaping defines the shaping for arabic runes. Each entry is indexed by
 // the shape, between 0 and 3:

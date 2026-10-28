@@ -10,21 +10,23 @@ const (
 	khmerNonKhmerCluster
 )
 
-const khmSM_ex_C = 1
-const khmSM_ex_DOTTEDCIRCLE = 11
-const khmSM_ex_H = 4
-const khmSM_ex_PLACEHOLDER = 10
-const khmSM_ex_Ra = 15
-const khmSM_ex_Robatic = 25
-const khmSM_ex_V = 2
-const khmSM_ex_VAbv = 20
-const khmSM_ex_VBlw = 21
-const khmSM_ex_VPre = 22
-const khmSM_ex_VPst = 23
-const khmSM_ex_Xgroup = 26
-const khmSM_ex_Ygroup = 27
-const khmSM_ex_ZWJ = 6
-const khmSM_ex_ZWNJ = 5
+const (
+	khmSM_ex_C            = 1
+	khmSM_ex_DOTTEDCIRCLE = 11
+	khmSM_ex_H            = 4
+	khmSM_ex_PLACEHOLDER  = 10
+	khmSM_ex_Ra           = 15
+	khmSM_ex_Robatic      = 25
+	khmSM_ex_V            = 2
+	khmSM_ex_VAbv         = 20
+	khmSM_ex_VBlw         = 21
+	khmSM_ex_VPre         = 22
+	khmSM_ex_VPst         = 23
+	khmSM_ex_Xgroup       = 26
+	khmSM_ex_Ygroup       = 27
+	khmSM_ex_ZWJ          = 6
+	khmSM_ex_ZWNJ         = 5
+)
 
 var _khmSM_actions []byte = []byte{
 	0, 1, 0, 1, 1, 1, 2, 1, 5,
@@ -180,9 +182,11 @@ var _khmSM_eof_trans []int16 = []int16{
 	42, 42, 49,
 }
 
-const khmSM_start int = 21
-const khmSM_first_final int = 21
-const khmSM_error int = -1
+const (
+	khmSM_start       int = 21
+	khmSM_first_final int = 21
+	khmSM_error       int = -1
+)
 
 const khmSM_en_main int = 21
 
@@ -220,7 +224,6 @@ func findSyllablesKhmer(buffer *Buffer) {
 			switch _khmSM_actions[_acts-1] {
 			case 1:
 				ts = p
-
 			}
 		}
 
@@ -239,9 +242,9 @@ func findSyllablesKhmer(buffer *Buffer) {
 
 				_mid = _lower + ((_upper - _lower) >> 1)
 				switch {
-				case (info[p].complexCategory) < _khmSM_trans_keys[_mid]:
+				case info[p].complexCategory < _khmSM_trans_keys[_mid]:
 					_upper = _mid - 1
-				case (info[p].complexCategory) > _khmSM_trans_keys[_mid]:
+				case info[p].complexCategory > _khmSM_trans_keys[_mid]:
 					_lower = _mid + 1
 				default:
 					_trans += int(_mid - int(_keys))
@@ -264,9 +267,9 @@ func findSyllablesKhmer(buffer *Buffer) {
 
 				_mid = _lower + (((_upper - _lower) >> 1) & ^1)
 				switch {
-				case (info[p].complexCategory) < _khmSM_trans_keys[_mid]:
+				case info[p].complexCategory < _khmSM_trans_keys[_mid]:
 					_upper = _mid - 2
-				case (info[p].complexCategory) > _khmSM_trans_keys[_mid+1]:
+				case info[p].complexCategory > _khmSM_trans_keys[_mid+1]:
 					_lower = _mid + 2
 				default:
 					_trans += int((_mid - int(_keys)) >> 1)
@@ -323,12 +326,12 @@ func findSyllablesKhmer(buffer *Buffer) {
 					foundSyllableKhmer(khmerNonKhmerCluster, ts, te, info, &syllableSerial)
 				}
 			case 9:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableKhmer(khmerConsonantSyllable, ts, te, info, &syllableSerial)
 				}
 			case 10:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableKhmer(khmerBrokenCluster, ts, te, info, &syllableSerial)
 					buffer.scratchFlags |= bsfHasBrokenSyllable
@@ -337,13 +340,13 @@ func findSyllablesKhmer(buffer *Buffer) {
 				switch act {
 				case 2:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableKhmer(khmerBrokenCluster, ts, te, info, &syllableSerial)
 						buffer.scratchFlags |= bsfHasBrokenSyllable
 					}
 				case 3:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableKhmer(khmerNonKhmerCluster, ts, te, info, &syllableSerial)
 					}
 				}
@@ -360,7 +363,6 @@ func findSyllablesKhmer(buffer *Buffer) {
 			switch _khmSM_actions[_acts-1] {
 			case 0:
 				ts = 0
-
 			}
 		}
 

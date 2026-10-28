@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"reflect"
+	"slices"
 	"sort"
 	"testing"
 
@@ -126,7 +127,7 @@ func TestRuneSet(t *testing.T) {
 		}
 
 		cov.Delete(tt.r)
-		sort.Slice(tt.start, func(i, j int) bool { return tt.start[i] < tt.start[j] })
+		slices.Sort(tt.start)
 		if runes := cov.runes(); !reflect.DeepEqual(runes, tt.start) {
 			t.Fatalf("expected %v, got %v (%v)", tt.start, runes, cov)
 		}
@@ -333,9 +334,7 @@ func TestScriptSet(t *testing.T) {
 
 func assertSetsMatch(t *testing.T, expected, actual []language.Script) {
 	t.Helper()
-	sort.Slice(expected, func(i, j int) bool {
-		return expected[i] < expected[j]
-	})
+	slices.Sort(expected)
 	if len(expected) != len(actual) {
 		t.Errorf("expected %d scripts, got %d", len(expected), len(actual))
 		t.Logf("expected: %q", expected)
@@ -396,7 +395,7 @@ func (rs RuneSet) scriptsNaive() ScriptSet {
 	for s := range tmp {
 		out = append(out, s)
 	}
-	sort.Slice(out, func(i, j int) bool { return out[i] < out[j] })
+	slices.Sort(out)
 	return out
 }
 
@@ -532,9 +531,9 @@ func BenchmarkIsIncludedIn(b *testing.B) {
 // test [contains] results
 func (ss ScriptSet) containsBinarySearch(script language.Script) bool {
 	scriptIdx := sort.Search(len([]language.Script(ss)), func(i int) bool {
-		return (ss)[i] >= script
+		return ss[i] >= script
 	})
-	return scriptIdx != len(ss) && (ss)[scriptIdx] == script
+	return scriptIdx != len(ss) && ss[scriptIdx] == script
 }
 
 func TestScriptSet_contains(t *testing.T) {
@@ -572,13 +571,6 @@ func BenchmarkScriptSet_contains(b *testing.B) {
 			}
 		}
 	})
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }
 
 var testScripts = [...]language.Script{

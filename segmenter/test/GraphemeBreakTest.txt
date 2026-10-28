@@ -16,8 +16,8 @@
 #	× wherever there is not.
 #  <comment> the format can change, but currently it shows:
 #	- the sample character name
-#	- (x) the Grapheme_Cluster_Break property value for the sample character and 
-#	  any other properties relevant to the algorithm, as described in 
+#	- (x) the Grapheme_Cluster_Break property value for the sample character and
+#	  any other properties relevant to the algorithm, as described in
 #	  GraphemeBreakTest.html
 #	- [x] the rule that determines whether there is a break or not,
 #	   as listed in the Rules section of GraphemeBreakTest.html

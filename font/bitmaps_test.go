@@ -6,9 +6,9 @@ import (
 	"bytes"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/opentype"
 	"github.com/OpenMellon/typesetting/font/opentype/tables"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/opentype"
 )
 
 func TestBloc(t *testing.T) {

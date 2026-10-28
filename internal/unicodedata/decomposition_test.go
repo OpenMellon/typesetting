@@ -1041,6 +1041,7 @@ var decompose1 = map[rune]rune{ // 1035 entries
 	0x2fa1c: 0x9f3b,
 	0x2fa1d: 0x2a600,
 }
+
 var decompose2 = map[rune][2]rune{ // 1046 entries
 	0x00c0:  {0x0041, 0x0300},
 	0x00c1:  {0x0041, 0x0301},
@@ -2089,6 +2090,7 @@ var decompose2 = map[rune][2]rune{ // 1046 entries
 	0x1d1bf: {0x1d1bb, 0x1d16f},
 	0x1d1c0: {0x1d1bc, 0x1d16f},
 }
+
 var compose = map[[2]rune]rune{ // 1046 entries
 	{0x003c, 0x0338}:   0x226e,
 	{0x003d, 0x0338}:   0x2260,

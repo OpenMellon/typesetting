@@ -182,7 +182,7 @@ func NewLangID(l Language) (LangID, bool) {
 func binarySearchLang(l Language, records []languageInfo) (int, bool) {
 	// binary search
 	index := sort.Search(len(records), func(i int) bool {
-		return (records)[i].lang >= l
+		return records[i].lang >= l
 	})
 	if index != len(records) && records[index].lang == l { // extact match
 		return index, true

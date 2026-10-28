@@ -6,9 +6,9 @@ import (
 	"bytes"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/opentype"
 	ot "github.com/OpenMellon/typesetting/font/opentype"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/opentype"
 )
 
 // wrap td.Files.ReadFile

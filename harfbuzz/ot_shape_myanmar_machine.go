@@ -11,31 +11,33 @@ const (
 	myanmarNonMyanmarCluster
 )
 
-const myaSM_ex_A = 9
-const myaSM_ex_As = 32
-const myaSM_ex_C = 1
-const myaSM_ex_CS = 18
-const myaSM_ex_DB = 3
-const myaSM_ex_DOTTEDCIRCLE = 11
-const myaSM_ex_GB = 10
-const myaSM_ex_H = 4
-const myaSM_ex_IV = 2
-const myaSM_ex_MH = 35
-const myaSM_ex_ML = 41
-const myaSM_ex_MR = 36
-const myaSM_ex_MW = 37
-const myaSM_ex_MY = 38
-const myaSM_ex_PT = 39
-const myaSM_ex_Ra = 15
-const myaSM_ex_SM = 8
-const myaSM_ex_SMPst = 57
-const myaSM_ex_VAbv = 20
-const myaSM_ex_VBlw = 21
-const myaSM_ex_VPre = 22
-const myaSM_ex_VPst = 23
-const myaSM_ex_VS = 40
-const myaSM_ex_ZWJ = 6
-const myaSM_ex_ZWNJ = 5
+const (
+	myaSM_ex_A            = 9
+	myaSM_ex_As           = 32
+	myaSM_ex_C            = 1
+	myaSM_ex_CS           = 18
+	myaSM_ex_DB           = 3
+	myaSM_ex_DOTTEDCIRCLE = 11
+	myaSM_ex_GB           = 10
+	myaSM_ex_H            = 4
+	myaSM_ex_IV           = 2
+	myaSM_ex_MH           = 35
+	myaSM_ex_ML           = 41
+	myaSM_ex_MR           = 36
+	myaSM_ex_MW           = 37
+	myaSM_ex_MY           = 38
+	myaSM_ex_PT           = 39
+	myaSM_ex_Ra           = 15
+	myaSM_ex_SM           = 8
+	myaSM_ex_SMPst        = 57
+	myaSM_ex_VAbv         = 20
+	myaSM_ex_VBlw         = 21
+	myaSM_ex_VPre         = 22
+	myaSM_ex_VPst         = 23
+	myaSM_ex_VS           = 40
+	myaSM_ex_ZWJ          = 6
+	myaSM_ex_ZWNJ         = 5
+)
 
 var _myaSM_actions []byte = []byte{
 	0, 1, 0, 1, 1, 1, 5, 1, 6,
@@ -297,9 +299,11 @@ var _myaSM_eof_trans []int16 = []int16{
 	48, 23, 23, 48, 61,
 }
 
-const myaSM_start int = 0
-const myaSM_first_final int = 0
-const myaSM_error int = -1
+const (
+	myaSM_start       int = 0
+	myaSM_first_final int = 0
+	myaSM_error       int = -1
+)
 
 const myaSM_en_main int = 0
 
@@ -337,7 +341,6 @@ func findSyllablesMyanmar(buffer *Buffer) {
 			switch _myaSM_actions[_acts-1] {
 			case 1:
 				ts = p
-
 			}
 		}
 
@@ -356,9 +359,9 @@ func findSyllablesMyanmar(buffer *Buffer) {
 
 				_mid = _lower + ((_upper - _lower) >> 1)
 				switch {
-				case (info[p].complexCategory) < _myaSM_trans_keys[_mid]:
+				case info[p].complexCategory < _myaSM_trans_keys[_mid]:
 					_upper = _mid - 1
-				case (info[p].complexCategory) > _myaSM_trans_keys[_mid]:
+				case info[p].complexCategory > _myaSM_trans_keys[_mid]:
 					_lower = _mid + 1
 				default:
 					_trans += int(_mid - int(_keys))
@@ -381,9 +384,9 @@ func findSyllablesMyanmar(buffer *Buffer) {
 
 				_mid = _lower + (((_upper - _lower) >> 1) & ^1)
 				switch {
-				case (info[p].complexCategory) < _myaSM_trans_keys[_mid]:
+				case info[p].complexCategory < _myaSM_trans_keys[_mid]:
 					_upper = _mid - 2
-				case (info[p].complexCategory) > _myaSM_trans_keys[_mid+1]:
+				case info[p].complexCategory > _myaSM_trans_keys[_mid+1]:
 					_lower = _mid + 2
 				default:
 					_trans += int((_mid - int(_keys)) >> 1)
@@ -459,12 +462,12 @@ func findSyllablesMyanmar(buffer *Buffer) {
 				switch act {
 				case 2:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableMyanmar(myanmarNonMyanmarCluster, ts, te, info, &syllableSerial)
 					}
 				case 3:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableMyanmar(myanmarBrokenCluster, ts, te, info, &syllableSerial)
 						buffer.scratchFlags |= bsfHasBrokenSyllable
 					}
@@ -482,7 +485,6 @@ func findSyllablesMyanmar(buffer *Buffer) {
 			switch _myaSM_actions[_acts-1] {
 			case 0:
 				ts = 0
-
 			}
 		}
 

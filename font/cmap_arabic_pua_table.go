@@ -38,12 +38,14 @@ var puaSimpUint8 = [136]uint8{
 func puaSimpBits2(a []uint8, i int) uint8 {
 	return (a[i>>2] >> ((i & 3) << 1)) & 0b11
 }
+
 func puaSimpBits4(a []uint8, i int) uint8 {
 	return (a[i>>1] >> ((i & 1) << 2)) & 0b1111
 }
+
 func puaSimpLookup(u rune) uint16 {
 	if 0 <= u && u < 65277 {
-		return puaSimpUint16[int((int(puaSimpUint8[40+int(int((int(puaSimpBits4(puaSimpUint8[8:], int((int(puaSimpBits2(puaSimpUint8[:], int(((u>>3)>>4)>>4))))<<4)+int(((u>>3)>>4)&15))))<<4)+int((u>>3)&15))]))<<3)+int(u&7)]
+		return puaSimpUint16[int(int(puaSimpUint8[40+int(int(int(puaSimpBits4(puaSimpUint8[8:], int(int(puaSimpBits2(puaSimpUint8[:], int(((u>>3)>>4)>>4)))<<4)+int(((u>>3)>>4)&15)))<<4)+int((u>>3)&15))])<<3)+int(u&7)]
 	} else {
 		return 0
 	}
@@ -97,9 +99,10 @@ var puaTradUint8 = [328]uint8{
 func puaTradBits4(a []uint8, i int) uint8 {
 	return (a[i>>1] >> ((i & 1) << 2)) & 0b1111
 }
+
 func puaTradLookup(u rune) uint16 {
 	if 0 <= u && u < 65277 {
-		return puaTradUint16[int((int(puaTradUint8[72+int(int((int(puaTradBits4(puaTradUint8[32:], int((int(puaTradBits4(puaTradUint8[:], int(((u>>2)>>4)>>4))))<<4)+int(((u>>2)>>4)&15))))<<4)+int((u>>2)&15))]))<<2)+int(u&3)]
+		return puaTradUint16[int(int(puaTradUint8[72+int(int(int(puaTradBits4(puaTradUint8[32:], int(int(puaTradBits4(puaTradUint8[:], int(((u>>2)>>4)>>4)))<<4)+int(((u>>2)>>4)&15)))<<4)+int((u>>2)&15))])<<2)+int(u&3)]
 	} else {
 		return 0
 	}

@@ -313,7 +313,7 @@ func reorderSyllableUse(buffer *Buffer, start, end int) {
 		/* Got a repha.  Reorder it towards the end, but before the first post-base
 		 * glyph. */
 		for i := start + 1; i < end; i++ {
-			isPostBaseGlyph := (int64(1<<(info[i].complexCategory))&postBaseFlags64) != 0 ||
+			isPostBaseGlyph := (int64(1<<info[i].complexCategory)&postBaseFlags64) != 0 ||
 				isHalantUse(&info[i])
 			if isPostBaseGlyph || i == end-1 {
 				/* If we hit a post-base glyph, move before it; otherwise move to the
@@ -336,7 +336,7 @@ func reorderSyllableUse(buffer *Buffer, start, end int) {
 	/* Move things back. */
 	j := start
 	for i := start; i < end; i++ {
-		flag := 1 << (info[i].complexCategory)
+		flag := 1 << info[i].complexCategory
 		if isHalantUse(&info[i]) {
 			/* If we hit a halant, move after it; otherwise move to the beginning, and
 			* shift things in between forward. */

@@ -54,9 +54,10 @@ var mirUint8 = [640]uint8{
 func mirBits4(a []uint8, i int) uint8 {
 	return (a[i>>1] >> ((i & 1) << 2)) & 0b1111
 }
+
 func mirLookup(u rune) int16 {
 	if 0 <= u && u < 65380 {
-		return mirInt16[(int(mirUint8[392+((int(mirUint8[160+((int(mirUint8[64+((int(mirBits4(mirUint8[:], int((((u>>1)>>2)>>3)>>3))))<<3+int((((u>>1)>>2)>>3)&7))]))<<3+int(((u>>1)>>2)&7))]))<<2+int((u>>1)&3))]))<<1+int(u&1)]
+		return mirInt16[int(mirUint8[392+(int(mirUint8[160+(int(mirUint8[64+(int(mirBits4(mirUint8[:], int((((u>>1)>>2)>>3)>>3)))<<3+int((((u>>1)>>2)>>3)&7))])<<3+int(((u>>1)>>2)&7))])<<2+int((u>>1)&3))])<<1+int(u&1)]
 	} else {
 		return 0
 	}

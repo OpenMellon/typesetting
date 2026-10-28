@@ -105,7 +105,7 @@ func TestLineBreakUnicodeReference(t *testing.T) {
 
 func parseUCDTestLineBoundary(t *testing.T, line string) (runes []rune, boundaries []bool) {
 	line = strings.Split(line, "#")[0] // remove comments
-	for _, field := range strings.Fields(line) {
+	for field := range strings.FieldsSeq(line) {
 		switch field {
 		case string(rune(0x00f7)): // DIVISION SIGN: boundary here
 			boundaries = append(boundaries, true)

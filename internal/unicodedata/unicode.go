@@ -215,7 +215,7 @@ func Compose(a, b rune) (rune, bool) {
 	if (a&0x7FFFF800) == 0x0000 && (b&0x7FFFFF80) == 0x0300 {
 		// If "a" is small enough and "b" is in the U+0300 range,
 		// the composition data is encoded in a 32bit array sorted by "a,b" pair.
-		k := uint32(((a)&0x07FF)<<21 | (b&0x007F)<<14)                    // HB_CODEPOINT_ENCODE3_11_7_14(a, b, 0)
+		k := uint32((a&0x07FF)<<21 | (b&0x007F)<<14)                      // HB_CODEPOINT_ENCODE3_11_7_14(a, b, 0)
 		const mask uint32 = (0x1FFFFF&0x07FF)<<21 | (0x1FFFFF&0x007F)<<14 // HB_CODEPOINT_ENCODE3_11_7_14(0x1FFFFFu, 0x1FFFFFu, 0)
 		i := sort.Search(len(dm2U32Map), func(i int) bool { return dm2U32Map[i]&mask >= k })
 		if !(i < len(dm2U32Map) && dm2U32Map[i]&mask == k) {

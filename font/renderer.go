@@ -301,13 +301,14 @@ func buildSegments(points []contourPoint) []Segment {
 					Args: [3]SegmentPoint{firstOffCurve, firstOnCurve},
 				})
 			case firstOffCurveValid && lastOffCurveValid:
-				out = append(out, Segment{
-					Op: ot.SegmentOpQuadTo,
-					Args: [3]SegmentPoint{
-						lastOffCurve,
-						midPoint(lastOffCurve, firstOffCurve),
+				out = append(
+					out, Segment{
+						Op: ot.SegmentOpQuadTo,
+						Args: [3]SegmentPoint{
+							lastOffCurve,
+							midPoint(lastOffCurve, firstOffCurve),
+						},
 					},
-				},
 					Segment{
 						Op:   ot.SegmentOpQuadTo,
 						Args: [3]SegmentPoint{firstOffCurve, firstOnCurve},

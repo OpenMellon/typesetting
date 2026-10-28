@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"sort"
+	"slices"
 )
 
 var (
@@ -166,7 +166,7 @@ func (ld *Loader) Tables() []Tag {
 	for tag := range ld.tables {
 		out = append(out, tag)
 	}
-	sort.Slice(out, func(i, j int) bool { return out[i] < out[j] })
+	slices.Sort(out)
 	return out
 }
 
@@ -320,7 +320,7 @@ func parseDfont(r Resource) ([]uint32, error) {
 		// resources of this type, minus one."
 		numFonts++
 
-		resourceListOffset = int(int16(binary.BigEndian.Uint16((typeList[tSize*i+6:]))))
+		resourceListOffset = int(int16(binary.BigEndian.Uint16(typeList[tSize*i+6:])))
 		if resourceListOffset < 0 {
 			return nil, errInvalidDfont
 		}

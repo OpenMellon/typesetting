@@ -6,11 +6,11 @@ import (
 	"bytes"
 	"testing"
 
-	hb "github.com/go-text/typesetting-utils/harfbuzz"
-	td "github.com/go-text/typesetting-utils/opentype"
 	ot "github.com/OpenMellon/typesetting/font/opentype"
 	"github.com/OpenMellon/typesetting/font/opentype/tables"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	hb "github.com/go-text/typesetting-utils/harfbuzz"
+	td "github.com/go-text/typesetting-utils/opentype"
 )
 
 // wrap td.Files.ReadFile

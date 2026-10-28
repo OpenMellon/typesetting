@@ -14,27 +14,29 @@ const (
 	indicNonIndicCluster
 )
 
-const indSM_ex_A = 9
-const indSM_ex_C = 1
-const indSM_ex_CM = 16
-const indSM_ex_CS = 18
-const indSM_ex_DOTTEDCIRCLE = 11
-const indSM_ex_H = 4
-const indSM_ex_M = 7
-const indSM_ex_MPst = 13
-const indSM_ex_N = 3
-const indSM_ex_PLACEHOLDER = 10
-const indSM_ex_RS = 12
-const indSM_ex_Ra = 15
-const indSM_ex_Repha = 14
-const indSM_ex_SM = 8
-const indSM_ex_SMPst = 57
-const indSM_ex_Symbol = 17
-const indSM_ex_V = 2
-const indSM_ex_VD = 9
-const indSM_ex_X = 0
-const indSM_ex_ZWJ = 6
-const indSM_ex_ZWNJ = 5
+const (
+	indSM_ex_A            = 9
+	indSM_ex_C            = 1
+	indSM_ex_CM           = 16
+	indSM_ex_CS           = 18
+	indSM_ex_DOTTEDCIRCLE = 11
+	indSM_ex_H            = 4
+	indSM_ex_M            = 7
+	indSM_ex_MPst         = 13
+	indSM_ex_N            = 3
+	indSM_ex_PLACEHOLDER  = 10
+	indSM_ex_RS           = 12
+	indSM_ex_Ra           = 15
+	indSM_ex_Repha        = 14
+	indSM_ex_SM           = 8
+	indSM_ex_SMPst        = 57
+	indSM_ex_Symbol       = 17
+	indSM_ex_V            = 2
+	indSM_ex_VD           = 9
+	indSM_ex_X            = 0
+	indSM_ex_ZWJ          = 6
+	indSM_ex_ZWNJ         = 5
+)
 
 var _indSM_actions []byte = []byte{
 	0, 1, 0, 1, 1, 1, 2, 1, 7,
@@ -481,9 +483,11 @@ var _indSM_eof_trans []int16 = []int16{
 	147, 119,
 }
 
-const indSM_start int = 31
-const indSM_first_final int = 31
-const indSM_error int = -1
+const (
+	indSM_start       int = 31
+	indSM_first_final int = 31
+	indSM_error       int = -1
+)
 
 const indSM_en_main int = 31
 
@@ -521,7 +525,6 @@ func findSyllablesIndic(buffer *Buffer) {
 			switch _indSM_actions[_acts-1] {
 			case 1:
 				ts = p
-
 			}
 		}
 
@@ -540,9 +543,9 @@ func findSyllablesIndic(buffer *Buffer) {
 
 				_mid = _lower + ((_upper - _lower) >> 1)
 				switch {
-				case (info[p].complexCategory) < _indSM_trans_keys[_mid]:
+				case info[p].complexCategory < _indSM_trans_keys[_mid]:
 					_upper = _mid - 1
-				case (info[p].complexCategory) > _indSM_trans_keys[_mid]:
+				case info[p].complexCategory > _indSM_trans_keys[_mid]:
 					_lower = _mid + 1
 				default:
 					_trans += int(_mid - int(_keys))
@@ -565,9 +568,9 @@ func findSyllablesIndic(buffer *Buffer) {
 
 				_mid = _lower + (((_upper - _lower) >> 1) & ^1)
 				switch {
-				case (info[p].complexCategory) < _indSM_trans_keys[_mid]:
+				case info[p].complexCategory < _indSM_trans_keys[_mid]:
 					_upper = _mid - 2
-				case (info[p].complexCategory) > _indSM_trans_keys[_mid+1]:
+				case info[p].complexCategory > _indSM_trans_keys[_mid+1]:
 					_lower = _mid + 2
 				default:
 					_trans += int((_mid - int(_keys)) >> 1)
@@ -646,27 +649,27 @@ func findSyllablesIndic(buffer *Buffer) {
 					foundSyllableIndic(indicNonIndicCluster, ts, te, info, &syllableSerial)
 				}
 			case 14:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableIndic(indicConsonantSyllable, ts, te, info, &syllableSerial)
 				}
 			case 15:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableIndic(indicVowelSyllable, ts, te, info, &syllableSerial)
 				}
 			case 16:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableIndic(indicStandaloneCluster, ts, te, info, &syllableSerial)
 				}
 			case 17:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableIndic(indicSymbolCluster, ts, te, info, &syllableSerial)
 				}
 			case 18:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableIndic(indicBrokenCluster, ts, te, info, &syllableSerial)
 					buffer.scratchFlags |= bsfHasBrokenSyllable
@@ -675,23 +678,23 @@ func findSyllablesIndic(buffer *Buffer) {
 				switch act {
 				case 1:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableIndic(indicConsonantSyllable, ts, te, info, &syllableSerial)
 					}
 				case 5:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableIndic(indicNonIndicCluster, ts, te, info, &syllableSerial)
 					}
 				case 6:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableIndic(indicBrokenCluster, ts, te, info, &syllableSerial)
 						buffer.scratchFlags |= bsfHasBrokenSyllable
 					}
 				case 7:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableIndic(indicNonIndicCluster, ts, te, info, &syllableSerial)
 					}
 				}
@@ -708,7 +711,6 @@ func findSyllablesIndic(buffer *Buffer) {
 			switch _indSM_actions[_acts-1] {
 			case 0:
 				ts = 0
-
 			}
 		}
 

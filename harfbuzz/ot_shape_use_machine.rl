@@ -1,4 +1,4 @@
-package harfbuzz 
+package harfbuzz
 
 // Code generated with ragel -Z -o ot_shape_use_machine.go ot_shape_use_machine.rl ; sed -i '/^\/\/line/ d' ot_shape_use_machine.go ; goimports -w ot_shape_use_machine.go  DO NOT EDIT.
 
@@ -6,14 +6,14 @@ package harfbuzz
 
 const (
 	useViramaTerminatedCluster = iota
-	useSakotTerminatedCluster 
-	useStandardCluster 
-	useNumberJoinerTerminatedCluster 
-	useNumeralCluster 
-	useSymbolCluster 
-	useHieroglyphCluster 
-	useBrokenCluster 
-	useNonCluster 
+	useSakotTerminatedCluster
+	useStandardCluster
+	useNumberJoinerTerminatedCluster
+	useNumeralCluster
+	useSymbolCluster
+	useHieroglyphCluster
+	useBrokenCluster
+	useNonCluster
 )
 
 %%{
@@ -168,5 +168,3 @@ func findSyllablesUse (buffer * Buffer) {
 	}%%
 	_ = act // needed by Ragel, but unused
 }
-
- 

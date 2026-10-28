@@ -123,7 +123,7 @@ var cccUint8 = [2182]uint8{
 
 func cccLookup(u rune) uint8 {
 	if 0 <= u && u < 125259 {
-		return cccUint8[1678+((int(cccUint8[1094+((int(cccUint8[614+((int(cccUint8[246+((int(cccUint8[int((((u>>2)>>2)>>2)>>3)]))<<3+int((((u>>2)>>2)>>2)&7))]))<<2+int(((u>>2)>>2)&3))]))<<2+int((u>>2)&3))]))<<2+int(u&3))]
+		return cccUint8[1678+(int(cccUint8[1094+(int(cccUint8[614+(int(cccUint8[246+(int(cccUint8[int((((u>>2)>>2)>>2)>>3)])<<3+int((((u>>2)>>2)>>2)&7))])<<2+int(((u>>2)>>2)&3))])<<2+int((u>>2)&3))])<<2+int(u&3))]
 	} else {
 		return 0
 	}

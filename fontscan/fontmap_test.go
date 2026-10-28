@@ -332,10 +332,11 @@ func TestFindSytemFont(t *testing.T) {
 	tu.Assert(t, !ok) // no match on an empty fontmap
 
 	// simulate system fonts
-	fm.appendFootprints(Footprint{
-		Family:   font.NormalizeFamily("Nimbus"),
-		Location: Location{File: "nimbus.ttf"},
-	},
+	fm.appendFootprints(
+		Footprint{
+			Family:   font.NormalizeFamily("Nimbus"),
+			Location: Location{File: "nimbus.ttf"},
+		},
 		Footprint{
 			Family:         font.NormalizeFamily("Noto Sans"),
 			Location:       Location{File: "noto.ttf"},
@@ -385,7 +386,7 @@ func TestDumpSystemFonts(t *testing.T) {
 	import "github.com/OpenMellon/typesetting/font"
 
 	// extracted from a linux system
-	var linuxSampleFontSet = 
+	var linuxSampleFontSet =
 	%#v`, trimmed)
 	code = strings.ReplaceAll(code, "fontscan.", "")
 	code = strings.ReplaceAll(code, "Footprint{", "\n{")

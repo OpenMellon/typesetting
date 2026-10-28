@@ -250,9 +250,10 @@ var wbUint8 = [2704]uint8{
 func wbBits4(a []uint8, i int) uint8 {
 	return (a[i>>1] >> ((i & 1) << 2)) & 0b1111
 }
+
 func wbLookup(u rune) uint8 {
 	if 0 <= u && u < 918000 {
-		return wbBits4(wbUint8[2454:], (int(wbUint8[930+((int(wbUint16[(int(wbUint8[226+((int(wbUint8[int((((u>>2)>>2)>>3)>>5)]))<<5+int((((u>>2)>>2)>>3)&31))]))<<3+int(((u>>2)>>2)&7)]))<<2+int((u>>2)&3))]))<<2+int(u&3))
+		return wbBits4(wbUint8[2454:], int(wbUint8[930+(int(wbUint16[int(wbUint8[226+(int(wbUint8[int((((u>>2)>>2)>>3)>>5)])<<5+int((((u>>2)>>2)>>3)&31))])<<3+int(((u>>2)>>2)&7)])<<2+int((u>>2)&3))])<<2+int(u&3))
 	} else {
 		return 0
 	}
@@ -409,9 +410,10 @@ var wordUint8 = [2844]uint8{
 func wordBits1(a []uint8, i int) uint8 {
 	return (a[i>>3] >> ((i & 7) << 0)) & 0b1
 }
+
 func wordLookup(u rune) uint8 {
 	if 0 <= u && u < 210042 {
-		return wordBits1(wordUint8[2374:], (int(wordUint8[678+((int(wordUint8[206+((int(wordUint8[int(((u>>4)>>3)>>3)]))<<3+int(((u>>4)>>3)&7))]))<<3+int((u>>4)&7))]))<<4+int(u&15))
+		return wordBits1(wordUint8[2374:], int(wordUint8[678+(int(wordUint8[206+(int(wordUint8[int(((u>>4)>>3)>>3)])<<3+int(((u>>4)>>3)&7))])<<3+int((u>>4)&7))])<<4+int(u&15))
 	} else {
 		return 0
 	}

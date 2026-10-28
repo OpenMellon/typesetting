@@ -528,7 +528,7 @@ var gcUint8 = [6942]uint8{
 
 func gcLookup(u rune) uint8 {
 	if 0 <= u && u < 1114110 {
-		return gcUint8[6560+((int(gcUint8[816+((int(gcUint16[(int(gcUint8[272+((int(gcUint8[int((((u>>1)>>3)>>4)>>4)]))<<4+int((((u>>1)>>3)>>4)&15))]))<<4+int(((u>>1)>>3)&15)]))<<3+int((u>>1)&7))]))<<1+int(u&1))]
+		return gcUint8[6560+(int(gcUint8[816+(int(gcUint16[int(gcUint8[272+(int(gcUint8[int((((u>>1)>>3)>>4)>>4)])<<4+int((((u>>1)>>3)>>4)&15))])<<4+int(((u>>1)>>3)&15)])<<3+int((u>>1)&7))])<<1+int(u&1))]
 	} else {
 		return 0
 	}

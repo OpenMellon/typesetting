@@ -1,4 +1,4 @@
-package harfbuzz 
+package harfbuzz
 
 // Code generated with ragel -Z -o ot_shape_myanmar_machine.go ot_shape_myanmar_machine.rl ; sed -i '/^\/\/line/ d' ot_shape_myanmar_machine.go ; goimports -w ot_shape_myanmar_machine.go  DO NOT EDIT.
 
@@ -81,7 +81,7 @@ main := |*
 
 
 func findSyllablesMyanmar (buffer *Buffer){
-    var p, ts, te, act, cs int 
+    var p, ts, te, act, cs int
     info := buffer.Info;
     %%{
         write init;
@@ -97,4 +97,3 @@ func findSyllablesMyanmar (buffer *Buffer){
     }%%
     _ = act // needed by Ragel, but unused
 }
-

@@ -367,7 +367,7 @@ var dmUint8 = [1278]uint8{
 
 func dmLookup(u rune) uint16 {
 	if 0 <= u && u < 195102 {
-		return dmUint16[(int(dmUint8[382+((int(dmUint8[int((u>>4)>>5)]))<<5+int((u>>4)&31))]))<<4+int(u&15)]
+		return dmUint16[int(dmUint8[382+(int(dmUint8[int((u>>4)>>5)])<<5+int((u>>4)&31))])<<4+int(u&15)]
 	} else {
 		return 0
 	}

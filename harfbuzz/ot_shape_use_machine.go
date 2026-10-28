@@ -16,50 +16,52 @@ const (
 	useNonCluster
 )
 
-const useSM_ex_B = 1
-const useSM_ex_CGJ = 6
-const useSM_ex_CMAbv = 31
-const useSM_ex_CMBlw = 32
-const useSM_ex_CS = 43
-const useSM_ex_FAbv = 24
-const useSM_ex_FBlw = 25
-const useSM_ex_FMAbv = 45
-const useSM_ex_FMBlw = 46
-const useSM_ex_FMPst = 47
-const useSM_ex_FPst = 26
-const useSM_ex_G = 49
-const useSM_ex_GB = 5
-const useSM_ex_H = 12
-const useSM_ex_HM = 54
-const useSM_ex_HN = 13
-const useSM_ex_HR = 55
-const useSM_ex_HVM = 53
-const useSM_ex_IS = 44
-const useSM_ex_J = 50
-const useSM_ex_MAbv = 27
-const useSM_ex_MBlw = 28
-const useSM_ex_MPre = 30
-const useSM_ex_MPst = 29
-const useSM_ex_N = 4
-const useSM_ex_O = 0
-const useSM_ex_R = 18
-const useSM_ex_RK = 56
-const useSM_ex_SB = 51
-const useSM_ex_SE = 52
-const useSM_ex_SMAbv = 41
-const useSM_ex_SMBlw = 42
-const useSM_ex_SUB = 11
-const useSM_ex_Sk = 48
-const useSM_ex_VAbv = 33
-const useSM_ex_VBlw = 34
-const useSM_ex_VMAbv = 37
-const useSM_ex_VMBlw = 38
-const useSM_ex_VMPre = 23
-const useSM_ex_VMPst = 39
-const useSM_ex_VPre = 22
-const useSM_ex_VPst = 35
-const useSM_ex_WJ = 16
-const useSM_ex_ZWNJ = 14
+const (
+	useSM_ex_B     = 1
+	useSM_ex_CGJ   = 6
+	useSM_ex_CMAbv = 31
+	useSM_ex_CMBlw = 32
+	useSM_ex_CS    = 43
+	useSM_ex_FAbv  = 24
+	useSM_ex_FBlw  = 25
+	useSM_ex_FMAbv = 45
+	useSM_ex_FMBlw = 46
+	useSM_ex_FMPst = 47
+	useSM_ex_FPst  = 26
+	useSM_ex_G     = 49
+	useSM_ex_GB    = 5
+	useSM_ex_H     = 12
+	useSM_ex_HM    = 54
+	useSM_ex_HN    = 13
+	useSM_ex_HR    = 55
+	useSM_ex_HVM   = 53
+	useSM_ex_IS    = 44
+	useSM_ex_J     = 50
+	useSM_ex_MAbv  = 27
+	useSM_ex_MBlw  = 28
+	useSM_ex_MPre  = 30
+	useSM_ex_MPst  = 29
+	useSM_ex_N     = 4
+	useSM_ex_O     = 0
+	useSM_ex_R     = 18
+	useSM_ex_RK    = 56
+	useSM_ex_SB    = 51
+	useSM_ex_SE    = 52
+	useSM_ex_SMAbv = 41
+	useSM_ex_SMBlw = 42
+	useSM_ex_SUB   = 11
+	useSM_ex_Sk    = 48
+	useSM_ex_VAbv  = 33
+	useSM_ex_VBlw  = 34
+	useSM_ex_VMAbv = 37
+	useSM_ex_VMBlw = 38
+	useSM_ex_VMPre = 23
+	useSM_ex_VMPst = 39
+	useSM_ex_VPre  = 22
+	useSM_ex_VPst  = 35
+	useSM_ex_WJ    = 16
+	useSM_ex_ZWNJ  = 14
+)
 
 var _useSM_actions []byte = []byte{
 	0, 1, 0, 1, 1, 1, 2, 1, 5,
@@ -631,9 +633,11 @@ var _useSM_eof_trans []int16 = []int16{
 	136, 142, 143, 143, 143, 143, 40,
 }
 
-const useSM_start int = 1
-const useSM_first_final int = 1
-const useSM_error int = -1
+const (
+	useSM_start       int = 1
+	useSM_first_final int = 1
+	useSM_error       int = -1
+)
 
 const useSM_en_main int = 1
 
@@ -671,7 +675,6 @@ func findSyllablesUse(buffer *Buffer) {
 			switch _useSM_actions[_acts-1] {
 			case 1:
 				ts = p
-
 			}
 		}
 
@@ -690,9 +693,9 @@ func findSyllablesUse(buffer *Buffer) {
 
 				_mid = _lower + ((_upper - _lower) >> 1)
 				switch {
-				case ((data[p]).p.v.complexCategory) < _useSM_trans_keys[_mid]:
+				case data[p].p.v.complexCategory < _useSM_trans_keys[_mid]:
 					_upper = _mid - 1
-				case ((data[p]).p.v.complexCategory) > _useSM_trans_keys[_mid]:
+				case data[p].p.v.complexCategory > _useSM_trans_keys[_mid]:
 					_lower = _mid + 1
 				default:
 					_trans += int(_mid - int(_keys))
@@ -715,9 +718,9 @@ func findSyllablesUse(buffer *Buffer) {
 
 				_mid = _lower + (((_upper - _lower) >> 1) & ^1)
 				switch {
-				case ((data[p]).p.v.complexCategory) < _useSM_trans_keys[_mid]:
+				case data[p].p.v.complexCategory < _useSM_trans_keys[_mid]:
 					_upper = _mid - 2
-				case ((data[p]).p.v.complexCategory) > _useSM_trans_keys[_mid+1]:
+				case data[p].p.v.complexCategory > _useSM_trans_keys[_mid+1]:
 					_lower = _mid + 2
 				default:
 					_trans += int((_mid - int(_keys)) >> 1)
@@ -851,7 +854,7 @@ func findSyllablesUse(buffer *Buffer) {
 					foundSyllableUSE(useNonCluster, data, ts, te, info, &syllableSerial)
 				}
 			case 23:
-				p = (te) - 1
+				p = te - 1
 				{
 					foundSyllableUSE(useSymbolCluster, data, ts, te, info, &syllableSerial)
 				}
@@ -859,12 +862,12 @@ func findSyllablesUse(buffer *Buffer) {
 				switch act {
 				case 8:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableUSE(useNonCluster, data, ts, te, info, &syllableSerial)
 					}
 				case 9:
 					{
-						p = (te) - 1
+						p = te - 1
 						foundSyllableUSE(useBrokenCluster, data, ts, te, info, &syllableSerial)
 						buffer.scratchFlags |= bsfHasBrokenSyllable
 					}
@@ -882,7 +885,6 @@ func findSyllablesUse(buffer *Buffer) {
 			switch _useSM_actions[_acts-1] {
 			case 0:
 				ts = 0
-
 			}
 		}
 

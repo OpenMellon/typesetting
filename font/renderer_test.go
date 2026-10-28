@@ -8,10 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/opentype"
 	ot "github.com/OpenMellon/typesetting/font/opentype"
 	"github.com/OpenMellon/typesetting/font/opentype/tables"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/opentype"
 )
 
 func loadFont(t testing.TB, filename string) *Font {

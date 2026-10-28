@@ -7,11 +7,11 @@ import (
 	"reflect"
 	"testing"
 
-	hd "github.com/go-text/typesetting-utils/harfbuzz"
 	"github.com/OpenMellon/typesetting/di"
 	"github.com/OpenMellon/typesetting/font"
 	"github.com/OpenMellon/typesetting/language"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	hd "github.com/go-text/typesetting-utils/harfbuzz"
 	"golang.org/x/image/math/fixed"
 )
 

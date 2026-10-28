@@ -3,10 +3,10 @@ package harfbuzz
 import (
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/harfbuzz"
 	"github.com/OpenMellon/typesetting/font"
 	"github.com/OpenMellon/typesetting/language"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/harfbuzz"
 )
 
 // ported from harfbuzz/perf

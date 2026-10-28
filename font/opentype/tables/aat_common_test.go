@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	td "github.com/go-text/typesetting-utils/opentype"
 	tu "github.com/OpenMellon/typesetting/testutils"
+	td "github.com/go-text/typesetting-utils/opentype"
 )
 
 func TestAATLookup4(t *testing.T) {
@@ -18,7 +18,8 @@ func TestAATLookup4(t *testing.T) {
 			"0002 0001 001E " + // glyph 1..2: mapping at offset 0x1E
 			"0005 0004 001E " + // glyph 4..5: mapping at offset 0x1E
 			"FFFF FFFF FFFF " + // end of search table
-			"0007 0008")
+			"0007 0008",
+	)
 	class, _, err := ParseAATLookup(src, 4)
 	tu.AssertNoErr(t, err)
 	gids := []GlyphID{1, 2, 4, 5}
@@ -204,7 +205,8 @@ func TestMorxLigature(t *testing.T) {
 			"03E8 03E9 " + // 210: LigList[0]=1000, LigList[1]=1001
 			"03EA 03EB " + // 214: LigList[2]=1002, LigList[3]=1003
 			"03EC 03ED " + // 218: LigList[4]=1004, LigList[3]=1005
-			"03EE 03EF ") // 222: LigList[5]=1006, LigList[6]=1007
+			"03EE 03EF ",
+	) // 222: LigList[5]=1006, LigList[6]=1007
 
 	tu.Assert(t, len(morxLigatureData) == 226)
 	out, _, err := ParseMorx(morxLigatureData, 1515)
@@ -313,7 +315,8 @@ func TestMorxInsertion(t *testing.T) {
 			"0000 " + // 166: Entries[1].CurrentInsertIndex=0
 			"FFFF " + // 168: Entries[1].MarkedInsertIndex=<None>
 			// Insertion action table.
-			"022F") // 170: InsertionActionTable[0]=GlyphID 559
+			"022F",
+	) // 170: InsertionActionTable[0]=GlyphID 559
 
 	tu.Assert(t, len(morxInsertionData) == 172)
 
